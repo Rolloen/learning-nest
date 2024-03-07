@@ -1,4 +1,4 @@
-import { RegisterUserDto } from 'src/users/dto/userDto';
+import { RegisterUserDto } from 'src/auth/dto/authDto';
 
 export const userRegisterMock: RegisterUserDto = {
     username: 'Tester',
