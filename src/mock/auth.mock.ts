@@ -1,8 +1,8 @@
 import { RegisterUserDto } from 'src/auth/dto/authDto';
 
-const RIGHT_USRNAME = 'Tester';
-const RIGHT_EMAIL = 'Test@testing.com';
-const RIGHT_PWD = 'tesTing@123';
+export const RIGHT_USRNAME = 'Tester';
+export const RIGHT_EMAIL = 'Test@testing.com';
+export const RIGHT_PWD = 'tesTing@123';
 
 export const validUserRegisterMock: RegisterUserDto = {
     username: RIGHT_USRNAME,

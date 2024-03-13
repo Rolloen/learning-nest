@@ -6,9 +6,4 @@ export class CreateUserDto {
     hashedPassword: string;
 }
 
-export class BasicUserDto {
-    email: string;
-    username: string;
-}
-
 export class UpdateUserDto extends PartialType(CreateUserDto) {}
