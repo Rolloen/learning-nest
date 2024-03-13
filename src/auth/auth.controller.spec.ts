@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { validUserRegisterMock } from 'src/mock/auth.mock';
 import { UsersService } from 'src/users/service/users.service';
 import { AuthController } from './auth.controller';
 import { AuthService } from './service/auth.service';
-import { userRegisterMock } from 'src/mock/users.mock';
 
 describe('AuthController', () => {
     let controller: AuthController;
@@ -22,7 +22,7 @@ describe('AuthController', () => {
                     provide: AuthService,
                     useValue: {
                         register: jest.fn().mockImplementation(() => {
-                            return Promise.resolve(userRegisterMock);
+                            return Promise.resolve(validUserRegisterMock);
                         }),
                     },
                 },
@@ -37,21 +37,20 @@ describe('AuthController', () => {
         expect(controller).toBeDefined();
     });
 
-    it('should call register from authService', async () => {
+    it('should call register from authService when calling Register route', async () => {
         // Arrange
         // Act
-        await controller.register(userRegisterMock);
+        await controller.register(validUserRegisterMock);
         const registerFunc = jest.spyOn(authService, 'register');
         // Assert
         expect(registerFunc).toHaveBeenCalled();
     });
 
-    // it('should return ', async () => {
-    //     // Arrange
-    //     // Act
-    //     await controller.register(userRegisterMock);
-    //     const registerFunc = jest.spyOn(authService, 'register');
-    //     // Assert
-    //     expect(registerFunc).toHaveBeenCalled();
-    // });
+    it('should return "Registered" if user is valid when calling Register route', async () => {
+        // Arrange
+        // Act
+        const controllerRes = await controller.register(validUserRegisterMock);
+        // Assert
+        expect(controllerRes).toBe('Registered');
+    });
 });
